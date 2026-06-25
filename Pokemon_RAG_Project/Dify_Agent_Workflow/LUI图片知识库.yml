@@ -1,0 +1,507 @@
+app:
+  description: ''
+  icon: 💬
+  icon_background: '#FEF7C3'
+  icon_type: emoji
+  mode: advanced-chat
+  name: LUI图片知识库
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/deepseek:0.0.17@f7a5c1d222d17ee419b17a80d6e4923838fe93788dc724a3af73fbc6990b3a32
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/tongyi:0.2.0@4e5891a2f4fff19b005a662a1fadff0e56b62b2dd1b4a93bdffae83c5b38b05e
+    version: null
+kind: app
+version: 0.6.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      - document
+      allowed_file_upload_methods:
+      - remote_url
+      - local_file
+      enabled: true
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 20
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        single_chunk_attachment_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: 你好，需要我帮忙吗？
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: true
+      model:
+        completion_params:
+          echo: false
+          frequency_penalty: 0
+          max_tokens: 0
+          presence_penalty: 0
+          stop: []
+          temperature: 0.7
+          top_p: 0
+        mode: chat
+        name: deepseek-v4-flash
+        provider: langgenius/deepseek/deepseek
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: question-classifier
+      id: 1776072202913-source-1781524748148-target
+      selected: false
+      source: '1776072202913'
+      sourceHandle: source
+      target: '1781524748148'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: llm
+      id: 1781524748148-1-1781524755951-target
+      selected: false
+      source: '1781524748148'
+      sourceHandle: '1'
+      target: '1781524755951'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: llm
+      id: 1781524748148-2-1781524753422-target
+      selected: false
+      source: '1781524748148'
+      sourceHandle: '2'
+      target: '1781524753422'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: knowledge-retrieval
+      id: 1781524753422-source-1781524760081-target
+      source: '1781524753422'
+      sourceHandle: source
+      target: '1781524760081'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1781524760081-source-1781524775986-target
+      source: '1781524760081'
+      sourceHandle: source
+      target: '1781524775986'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1781524775986-source-1781524782386-target
+      source: '1781524775986'
+      sourceHandle: source
+      target: '1781524782386'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1781524755951-source-1781524782386-target
+      source: '1781524755951'
+      sourceHandle: source
+      target: '1781524782386'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: 接收用户发送的消息和文件，作为每一轮对话的起点。
+        selected: false
+        title: 用户输入
+        type: start
+        variables: []
+      height: 117
+      id: '1776072202913'
+      position:
+        x: -283.8925934492672
+        y: 587.4771586984835
+      positionAbsolute:
+        x: -283.8925934492672
+        y: 587.4771586984835
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        author: Anne
+        desc: ''
+        height: 374
+        selected: false
+        showAuthor: false
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":1,"mode":"normal","style":"font-size:
+          16px;","text":"这个对话流是做什么的？","type":"text","version":1}],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":1,"textStyle":"font-size:
+          16px;"},{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"font-size:
+          14px;","text":"这是你在 Dify 创建的对话形式 AI。","type":"text","version":1}],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":"font-size:
+          14px;"},{"children":[{"detail":0,"format":0,"mode":"normal","style":"font-size:
+          14px;","text":"与常规的工作流不同，这是一个带","type":"text","version":1},{"detail":0,"format":1,"mode":"normal","style":"font-size:
+          14px;","text":"记忆功能","type":"text","version":1},{"detail":0,"format":0,"mode":"normal","style":"font-size:
+          14px;","text":"的对话流。它能记住对话内容，你可以提问、得到回答，然后继续进行提问，不需要重复说明上下文。","type":"text","version":1}],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":"font-size:
+          14px;"},{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textStyle":"font-size:
+          14px;","textFormat":0},{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[{"detail":0,"format":1,"mode":"normal","style":"font-size:
+          14px;","text":"🧠  你将了解","type":"text","version":1}],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":1,"textStyle":"font-size:
+          14px;"},{"children":[{"detail":0,"format":0,"mode":"normal","style":"font-size:
+          14px;","text":"- 如何搭建一个能来回对话的基础聊天机器人","type":"text","version":1}],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":"font-size:
+          14px;"},{"children":[{"detail":0,"format":0,"mode":"normal","style":"font-size:
+          14px;","text":"- LLM 节点是如何处理上下文和记忆的","type":"text","version":1}],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":"font-size:
+          14px;"},{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textStyle":"font-size:
+          14px;","textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"font-size:
+          14px;","text":"工作流和对话流有什么区别？点击","type":"text","version":1},{"children":[{"detail":0,"format":0,"mode":"normal","style":"font-size:
+          14px;","text":"此处","type":"text","version":1}],"direction":null,"format":"","indent":0,"type":"link","version":1,"rel":"noreferrer","target":null,"title":null,"url":"https://docs.dify.ai/zh/use-dify/build/workflow-chatflow"},{"detail":0,"format":0,"mode":"normal","style":"font-size:
+          14px;","text":"，查看详细说明。","type":"text","version":1}],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":"font-size:
+          14px;"},{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":1,"textStyle":""},{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""}],"direction":null,"format":"","indent":0,"type":"root","version":1}}'
+        theme: yellow
+        title: ''
+        type: ''
+        width: 594
+      height: 374
+      id: '1776072886890'
+      position:
+        x: -750.3689437424143
+        y: 4.209488166126562
+      positionAbsolute:
+        x: -750.3689437424143
+        y: 4.209488166126562
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 594
+    - data:
+        author: Anne
+        desc: ''
+        height: 232
+        selected: false
+        showAuthor: false
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":1,"mode":"normal","style":"font-size:
+          16px;","text":"LLM 节点","type":"text","version":1}],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":1,"textStyle":"font-size:
+          16px;"},{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[{"detail":0,"format":0,"mode":"normal","style":"font-size:
+          14px;","text":"这个节点内置了","type":"text","version":1},{"detail":0,"format":1,"mode":"normal","style":"font-size:
+          14px;","text":"对话记忆","type":"text","version":1},{"detail":0,"format":0,"mode":"normal","style":"font-size:
+          14px;","text":"功能，会自动记录之前的对话内容，用户可以继续对话","type":"text","version":1}],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":"font-size:
+          14px;"},{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":1,"textStyle":"font-size:
+          14px;"},{"children":[{"detail":0,"format":1,"mode":"normal","style":"font-size:
+          14px;","text":"系统提示词（System Prompt）","type":"text","version":1},{"type":"linebreak","version":1},{"detail":0,"format":0,"mode":"normal","style":"font-size:
+          14px;","text":"在 SYSTEM 栏里填写内容，就能控制 AI的行为方式。模板里已经预填了一个版本，你可以直接查看，并根据自己的需求进行修改。","type":"text","version":1}],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":1,"textStyle":"font-size:
+          14px;"},{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textStyle":"font-size:
+          14px;","textFormat":0},{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0,"textStyle":""},{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":1,"textStyle":"font-size:
+          14px;"}],"direction":null,"format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 658
+      height: 232
+      id: '1776665049022'
+      position:
+        x: 416.1796850399503
+        y: 121.41592651790182
+      positionAbsolute:
+        x: 416.1796850399503
+        y: 121.41592651790182
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 658
+    - data:
+        classes:
+        - id: '1'
+          label: CLASS 1
+          name: 日常聊天
+        - id: '2'
+          label: CLASS 2
+          name: 知识库图片搜索
+        instruction: "根据用户输入的自然语言:，将其精准分类到以下两类之一：\n\n- **CLASS 1 (日常聊天)**：用户在进行日常问候、打招呼、闲聊、表达感谢，或者提问与宝可梦图鉴完全无关的话题。\n\
+          \  - *典型示例*：“你好”、“哈喽”、“你是谁”、“谢谢你”、“今天星期几”。\n\n- **CLASS 2 (知识库图片搜索)**：用户想要查询某只特定的宝可梦、输入了编号、或者通过颜色、外观、特征和属性来寻找、描述和要求展示宝可梦图片。\n\
+          \  - *典型示例*：“0001号图片是啥”、“给我找几只黄色的宝可梦”、“帮我找一下背上长了种子的绿色小恐龙”、“妙蛙种子的照片有吗”。\n\
+          \n请根据用户问题的真实语义重心，直接输出匹配度最高的分类（CLASS 1 或 CLASS 2）。/"
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-v4-flash
+          provider: langgenius/tongyi/tongyi
+        query_variable_selector:
+        - sys
+        - query
+        selected: false
+        title: 问题分类器
+        type: question-classifier
+        vision:
+          enabled: false
+      height: 178
+      id: '1781524748148'
+      position:
+        x: 50.184698122683585
+        y: 575.9975179875464
+      positionAbsolute:
+        x: 50.184698122683585
+        y: 575.9975179875464
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen3.6-plus
+          provider: langgenius/tongyi/tongyi
+        prompt_config:
+          jinja2_variables: []
+        prompt_template:
+        - edition_type: basic
+          id: c4675b5a-f187-42a7-9e66-98c39fe79edf
+          role: system
+          text: "# 角色\n你是一个专业的宝可梦图鉴识别与搜索词提炼专家。你的唯一任务是根据用户输入的图片或文字，输出最精准的【数据库检索关键词】用于精准匹配。\n\
+            用户输入：{{#sys.query#}}\n# 核心任务与分支规则（严格执行）\n## 规则 1：如果用户【上传了图片】（以图搜图）\n1.\
+            \ **视觉辨认**：仔细观察用户上传的图片，利用你的宝可梦常识，**直接识别出该宝可梦官方的中文名字**（例如：图片是暴雪王，直接辨认为“暴雪王”；图片是凯西，直接辨认为“凯西”）。\n\
+            2. **输出规范**：**只输出该宝可梦的官方中文名字**，绝对不要输出任何特征描述、解释、标点符号或多余废话。\n   - *示例输入*：[上传了暴雪王的图片]\
+            \ 这只宝可梦是啥？\n   - *你的输出*：暴雪王\n\n## 规则 2：如果用户【没有上传图片，只输入了文字】（以文搜图）\n1. **直接提取，拒绝联想**：你只能提取用户提问中**实际提到**的特征、名字、属性或颜色。\n\
+            \   - **绝对不准进行任何自主联想、推测或扩展**！例如：如果用户输入“绿色的宝可梦”，你只能输出“绿色”，绝对不允许擅自联想并输出“妙蛙种子”或“草属性”。\n\
+            2. **去噪与精简**：彻底剔除提问中的所有无意义口语、助词、动词和时间词（如：“帮我找”、“有没有”、“上周看到的”、“图片是啥”、“给我看”、“谢谢”等）。\n\
+            3. **名字提取**：如果用户提到了具体名字（如“皮卡丘”、“妙蛙种子”），请直接原样提取出该名字。\n4. **输出格式**：仅输出提取出来的关键词，多个关键词之间用单个空格隔开。严禁包含任何前言、说明或标点符号。\n\
+            \   - *示例输入*：帮我找一个绿色的、背上有叶子的家伙\n     *你的输出*：绿色 叶子\n   - *示例输入*：我想看下杰尼龟\n\
+            \     *你的输出*：杰尼龟"
+        reasoning_format: tagged
+        selected: false
+        title: LLM
+        type: llm
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - sys
+            - files
+          enabled: true
+      height: 88
+      id: '1781524753422'
+      position:
+        x: 338.0455158991274
+        y: 766.2244712490468
+      positionAbsolute:
+        x: 338.0455158991274
+        y: 766.2244712490468
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - sys
+          - query
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-v4-flash
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: c0cff950-98fe-44b0-b92d-1467c57efe0c
+          role: system
+          text: '
+
+            你是一个温和、懂礼貌的宝可梦助手。请友好、简短地根据用户的问题回复用户的日常问候、闲聊或致谢。用户简单的日常无关问题也可以回答，不过你要提到你的主要职责是宝可梦知识库的检索
+
+            如果用户想要查询宝可梦，请友好地引导他们直接输入名字、或特征。
+
+            用户问题：{{#context#}}'
+        selected: false
+        title: LLM 2
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1781524755951'
+      position:
+        x: 638.8882648477222
+        y: 488.73410287819365
+      positionAbsolute:
+        x: 638.8882648477222
+        y: 488.73410287819365
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        dataset_ids:
+        - eF7rE4jnAqQLTa/4p07N1qpDZKmSsb2RF9Qwyr1RAyMke66mLAszeOXv9YZnYpD4
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: qwen3-rerank
+            provider: langgenius/tongyi/tongyi
+          score_threshold: null
+          top_k: 10
+          weights:
+            keyword_setting:
+              keyword_weight: 0.3
+            vector_setting:
+              embedding_model_name: text-embedding-v4
+              embedding_provider_name: langgenius/tongyi/tongyi
+              vector_weight: 0.7
+            weight_type: customized
+        query_attachment_selector: []
+        query_variable_selector:
+        - '1781524753422'
+        - text
+        retrieval_mode: multiple
+        selected: false
+        title: 知识检索
+        type: knowledge-retrieval
+      height: 90
+      id: '1781524760081'
+      position:
+        x: 644.9120764483353
+        y: 766.2244712490468
+      positionAbsolute:
+        x: 644.9120764483353
+        y: 766.2244712490468
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1781524760081'
+          - result
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen3.6-plus
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: d7a59005-e0f7-462b-81fb-4c28e7e7b068
+          role: system
+          text: "# 角色\n你是一个温和友好的宝可梦图鉴助手。请根据用户的问题{{#sys.query#}}，结合检索到的知识库上下文{{#context#}}，为用户展示对应的宝可梦图片和中文描述。\n\
+            \n# 核心红线\n1. **空检索拒绝**：若检索到的上下文（Context）为空，或其中没有包含对应的宝可梦数据，请委婉道歉，让用户重新提问\
+            \ 严禁自行瞎编链接和特征。\n\n# 图片渲染规范（极其重要，避免渲染失败）\n1. **标准语法**：从上下文中提取“对应图片:”后面的链接（格式如\
+            \ `https://.../xxxx.png`），并提取对应的“宝可梦名字”，使用标准 Markdown 语法输出图片：\n   `![宝可梦名字](图片链接)`\n\
+            2. **独立成行与空行约束**：每一张图片的 Markdown 代码**必须单独占用一行，且其上方和下方必须留出一个完整的空行**！这是确保图片成功渲染的关键。\n\
+            \   *正确排版示例*：\n   \n   ![妙蛙种子](https://xxxx/0001.png)\n   \n   **宝可梦名字**：妙蛙种子\n\
+            3. **禁止任何包裹**：绝对不要将图片 Markdown 语法包裹在任何代码块或反引号中，不要添加任何反斜杠 `\\` 进行转义。\n\n\
+            # 回复结构要求\n\n- **如果是查询单只宝可梦**，严格按照以下格式排版（注意空行）：\n\n  ![[宝可梦名字]]([图片链接])\n\
+            \n  **宝可梦名字**：[宝可梦名字]\n  **视觉特征与描述**：[中文特征与描述内容]\n\n- **如果是查询多只宝可梦**，请采用有序列表形式。对于列表中的每一只，必须用空行隔开，并确保图片的上下都有空行。格式示例：\n\
+            \  \n  ### 1. [宝可梦名字]\n  \n  ![[宝可梦名字]]([图片链接])\n  \n  **特征描述**：[中文特征与描述内容]"
+        selected: false
+        title: LLM 3
+        type: llm
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - sys
+            - files
+          enabled: true
+      height: 88
+      id: '1781524775986'
+      position:
+        x: 942.3601877601752
+        y: 766.2244712490468
+      positionAbsolute:
+        x: 942.3601877601752
+        y: 766.2244712490468
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: /{{#1781524755951.text#}}{{#1781524775986.text#}}
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 122
+      id: '1781524782386'
+      position:
+        x: 1257.0041998967552
+        y: 619.0564324007795
+      positionAbsolute:
+        x: 1257.0041998967552
+        y: 619.0564324007795
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    viewport:
+      x: 371.96395662443535
+      y: 51.85430375116516
+      zoom: 0.6810133017561583
+  rag_pipeline_variables: []
